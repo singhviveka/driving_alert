@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 import mysql.connector
 
@@ -20,7 +20,7 @@ def addEvent(event: Event):
     events.append(event)
     count = 0
     for e in events:
-        diff = datetime.now() - datetime.fromisoformat(e.timestamp)
+        diff = datetime.now(timezone.utc) - datetime.fromisoformat(e.timestamp)
         if (diff.total_seconds() / 60 <= 5) and (not e.is_driving_safe):
             count += 1
     if count >= 3:
