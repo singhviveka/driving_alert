@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import mysql
+import mysql.connector
 
 from model import Event
 
